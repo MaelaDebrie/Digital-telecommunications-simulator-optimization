@@ -1,6 +1,14 @@
-# Projet PPSE
-DEBRIE Maëla
-WILCOX Grace
+# Optimization of a digital communication simulation chain
+DEBRIE Maëla & WILCOX Grace  
+Supervised by CASSAGNE Adrien (Associate professor at LIP6, UPMC, Sorbonne Université)    
+April-June 2025
+
+## Compilation & execution
+
+To compile : use Makefile  
+To simulate : `./simulator -m [min_SNR float] -M [max_SNR float] -s [step_val float] -e [f_max uint] -K [info_bits uint] -N [codeword_size uint] -c ["monitor-neon" string] -D ["rep-hard"|"rep-hard8"|"rep-soft"|"rep-soft8"|"rep-hard8-neon"|"rep-soft8-neon" string] -f [sim_name string] -o ["mod-all-ones"|"mod-neon" string] --src-all-zeros --demod-neon --qf [f uint] --qs [s uint] -t [threads] -p [bit-packing]`
+
+Results for all five sims for all five of our optimizations are in `FINAL SIMS`; K=32 are found directly under each optimization, whereas K=128 are in the `big_k` folder. Graphs of block throughput (where applicable), overall throughput, and error rates in terms of SNR are provided for each simulation comparing each optimization with the non-optimized control configuration. These can be found under `FINAL GRAPHS`. A report of the development and analysis of the results of each optimization are in the attached PDF along with select graphs to aid in the analysis.
 
 # Preliminary note
 We tested our code with both K=32 and K=128. On the graph, we were able to see that while the BER remained unchanged, the FER was affected by this modification, for our reference point as well as our optimized code. This is because one bit error only leads to one frame error, no matter the number of information bits. This means that for K=32, we have 32 chances of getting a bit error, while for K=128, we have 4 times more chances of having a bit error, leading to an increased frame error rate.
